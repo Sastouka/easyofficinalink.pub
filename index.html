@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="EasyOfficinaLink - Solution de gestion de pharmacie 100% locale pour Windows et Android. Démarrez votre essai gratuit de 7 jours.">
+    <meta name="theme-color" content="#b91c1c">
+
+    <link rel="manifest" href='data:application/manifest+json,{"name":"EasyOfficinaLink","short_name":"OfficinaLink","start_url":".","display":"standalone","background_color":"#f7fafc","theme_color":"#b91c1c","icons":[{"src":"icon.png","sizes":"192x192","type":"image/png"},{"src":"icon.png","sizes":"512x512","type":"image/png"}]}'>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icon.png">
+
+    <title>EasyOfficinaLink | Solution Pharmacie Locale - Essai Gratuit de 7 Jours</title>
+    
+    <link rel="icon" type="image/png" href="icon.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VOTRE_ID_ANALYTICS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      // 1. Configuration de Google Analytics 4 (ID commençant par G-)
+      gtag('config', 'G-VOTRE_ID_ANALYTICS');
+
+      // 2. Configuration de Google Ads (ID commençant par AW-)
+      gtag('config', 'AW-VOTRE_ID_ADS');
+    </script>
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1993448841602507');
+      fbq('track', 'PageView');
+    </script>
+    <noscript>
+      <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1993448841602507&ev=PageView&noscript=1"/>
+    </noscript>
+
+    <style>
+        /* PALETTE DE COULEURS & VARIABLES */
+        :root {
+            --primary: #b91c1c;
+            --primary-dark: #991b1b;
+            --primary-light: #fca5a5;
+            --primary-glow: rgba(185, 28, 28, 0.25);
+            --secondary: #1e293b;
+            --secondary-dark: #0f172a;
+            --secondary-light: #475569;
+            --accent-emerald: #10b981;
+            --star-color: #fbbf24;
+            --text-main: #334155;
+            --text-light: #64748b;
+            --bg-body: #f8fafc;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            --radius: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text-main); background: var(--bg-body); line-height: 1.6; overflow-x: hidden; min-height: 100vh; scroll-behavior: smooth; }
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        img { display: block; max-width: 100%; height: auto; }
+        ul { list-style: none; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+        .text-center { text-align: center; }
+
+        /* HEADER */
+        header { background: rgba(255, 255, 255, 0.85); position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0,0,0,0.05); box-shadow: var(--shadow-sm); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+        .logo { font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; color: var(--secondary-dark); }
+        .logo img { height: 45px; margin-right: 12px; border-radius: 8px; }
+        .nav-link-guide { color: var(--secondary-dark); font-weight: 600; padding: 10px 20px; background: #f1f5f9; border-radius: 50px; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.3s; }
+        .nav-link-guide:hover { background: var(--primary); color: white; transform: translateY(-2px); box-shadow: 0 4px 12px var(--primary-glow); }
+
+        /* CONTENEUR IMAGE PRINCIPALE */
+        .landing-image-wrapper {
+            background-color: #000;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .landing-image-wrapper img {
+            width: 100%;
+            max-width: 720px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* BOUTONS */
+        .btn-primary { background: var(--secondary-dark); color: white; padding: 16px 36px; border-radius: 50px; font-weight: 700; font-size: 1.1rem; display: inline-flex; align-items: center; border: none; cursor: pointer; transition: all 0.3s ease; gap: 10px; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 25px -5px rgba(15, 23, 42, 0.5); }
+        
+        h2 { font-size: 2.5rem; color: var(--secondary); margin-bottom: 1.5rem; font-weight: 800; line-height: 1.2; position: relative; display: inline-block; }
+        h2::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60px; height: 5px; background: linear-gradient(135deg, #c53030 0%, #7f1d1d 100%); border-radius: 5px; }
+
+        /* FORMULAIRE DE LEAD */
+        .lead-form-section { padding: 6rem 0; background: white; border-top: 1px solid #edf2f7; }
+        .form-container { max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 24px; box-shadow: var(--shadow-sm); border: 1px solid #f1f5f9; }
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-label { display: block; font-weight: 600; color: var(--secondary-dark); margin-bottom: 8px; font-size: 0.95rem; }
+        .form-input { width: 100%; padding: 14px 18px; border-radius: 12px; border: 2px solid #e2e8f0; font-family: inherit; font-size: 1rem; transition: 0.3s; }
+        .form-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-glow); }
+        .form-select { appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23475569%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 18px top 50%; background-size: 12px auto; }
+
+        .btn-group-submit { display: flex; flex-direction: column; gap: 12px; margin-top: 25px; }
+
+        /* BOUTON VIDER INFOS */
+        .btn-clear-data { background: transparent; border: none; color: #ef4444; font-size: 0.85rem; text-decoration: underline; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; padding: 10px; transition: color 0.2s; }
+        .btn-clear-data:hover { color: #b91c1c; }
+
+        /* FOOTER & FLOATERS */
+        footer { background: var(--secondary-dark); color: #94a3b8; padding: 4rem 0 3rem; text-align: center; border-top: 5px solid var(--primary); }
+        .footer-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; flex-wrap: wrap; }
+        .footer-links a { color: #cbd5e1; font-weight: 600; font-size: 0.9rem; }
+        .footer-links a:hover { color: white; text-decoration: underline; }
+        
+        .btn-whatsapp-float { position: fixed; bottom: 30px; left: 30px; background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3); z-index: 999; animation: float 4s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+        @media (max-width: 900px) {
+            .nav-link-guide span { display: none; }
+            .form-container { padding: 25px; }
+            .hero { padding: 4rem 0 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background: #0f172a; color: white; padding: 20px; z-index: 10005; display: none; box-shadow: 0 -5px 15px rgba(0,0,0,0.3);">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+            <p style="margin: 0; font-size: 0.9rem; flex: 1;">
+                Nous utilisons des cookies, Google Analytics et le Pixel Facebook pour mesurer notre audience. En continuant, vous acceptez notre 
+                <a href="mentions-legales.html" style="color: #fca5a5; text-decoration: underline;">politique de confidentialité</a>.
+            </p>
+            <div style="display: flex; gap: 10px;">
+                <button onclick="acceptCookies()" style="background: var(--accent-emerald); color: white; border: none; padding: 10px 20px; border-radius: 50px; cursor: pointer; font-weight: 700;">Accepter</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="dragWhatsapp" class="btn-whatsapp-float">
+        <a href="https://wa.me/212652084735?text=Bonjour,%20je%20souhaite%20avoir%20des%20informations%20sur%20EasyOfficinaLink." target="_blank" style="color:white; display:flex;"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                     <img src="icon.png" alt="Icone EasyOfficinaLink"> EasyOfficinaLink
+                </div>
+                <div class="nav-actions">
+                    <a href="guide.html" target="_blank" class="nav-link-guide" title="Guide d'utilisation">
+                        <i class="fas fa-book-open"></i> <span>Guide</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero text-center">
+        <div class="container" data-aos="fade-up">
+            <h1>Le Cœur Numérique de<br>Votre Pharmacie</h1>
+            <p class="hero-desc">Encaissement rapide, gestion des stocks, ordonnancier et statistiques. Découvrez notre solution réseau 100% locale avec <strong>7 jours d'essai offerts</strong>.</p>
+            
+            <div style="margin-bottom: 3rem;">
+                <a href="#demande-acces" class="btn-primary" style="background: var(--primary);">
+                    <i class="fas fa-paper-plane"></i> Démarrer mon essai gratuit
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="landing-image-wrapper" data-aos="fade-up">
+        <img src="Landing.png" alt="Présentation Complète EasyOfficinaLink">
+    </section>
+
+    <section id="demande-acces" class="lead-form-section text-center">
+        <div class="container" data-aos="fade-up">
+            <h2 class="mb-4">Commencez vos 7 jours d'essai</h2>
+            <p class="text-light mb-10 max-w-2xl mx-auto" style="margin-bottom: 2.5rem;">
+                Remplissez ce formulaire pour recevoir votre lien de téléchargement (PC/Android). 
+                <strong>L'installation et les 7 premiers jours sont 100% gratuits et sans engagement.</strong> 
+                À l'issue de cette période, choisissez la formule qui vous convient (abonnement ou licence à vie) pour continuer à l'utiliser.
+            </p>
+            
+            <div class="form-container">
+                <form id="leadCaptureForm">
+                    <div class="form-group">
+                        <label for="fullName" class="form-label">Nom complet ou Nom de la Pharmacie</label>
+                        <input type="text" id="fullName" class="form-input" placeholder="Ex: Pharmacie du Centre / Jean Dupont" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="emailAddress" class="form-label">Adresse E-mail professionnelle</label>
+                        <input type="email" id="emailAddress" class="form-input" placeholder="Ex: contact@votrepharmacie.ma" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phoneNumber" class="form-label">Numéro de Téléphone</label>
+                        <input type="tel" id="phoneNumber" class="form-input" placeholder="Ex: +212 600 000 000" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="platformInterest" class="form-label">Quel matériel souhaitez-vous équiper ?</label>
+                        <select id="platformInterest" class="form-input form-select" required>
+                            <option value="" disabled selected>Choisissez une option...</option>
+                            <option value="PC Windows">Ordinateur (Windows)</option>
+                            <option value="Mobile Android">Téléphone / Tablette (Android)</option>
+                            <option value="Les deux (Réseau)">Les deux (Installation en réseau)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="btn-group-submit">
+                        <button type="button" onclick="submitLeadData('whatsapp')" class="btn-primary" style="width: 100%; justify-content: center; background:var(--accent-emerald);">
+                            <i class="fab fa-whatsapp"></i> Envoyer ma demande par WhatsApp
+                        </button>
+                        
+                        <button type="button" onclick="submitLeadData('email')" class="btn-primary" style="width: 100%; justify-content: center; background:var(--secondary-dark);">
+                            <i class="fas fa-envelope"></i> Envoyer ma demande par E-mail
+                        </button>
+                    </div>
+
+                    <div style="margin-top: 15px;">
+                        <button type="button" onclick="clearPersonalData()" class="btn-clear-data" id="clearDataBtn" style="display: none;">
+                            <i class="fas fa-trash-alt"></i> Vider mes infos personnelles
+                        </button>
+                    </div>
+                    
+                    <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 15px;">En envoyant ce formulaire, vous acceptez d'être recontacté pour l'installation du logiciel. Vos données restent confidentielles.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container" data-aos="zoom-in">
+            <div class="footer-links">
+                <a href="guide.html" target="_blank"><i class="fas fa-book"></i> Guide</a>
+                <a href="mentions-legales.html" target="_blank"><i class="fas fa-gavel"></i> Mentions Légales & CGU</a>
+            </div>
+
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; margin-top: 20px; text-align: left; max-width: 800px; margin: 20px auto 0;">
+                <p style="font-size: 1rem; color: white; font-weight: bold; margin-bottom: 10px;">© 2026 EasyOfficinaLink par SASTOUKA DIGITAL.</p>
+                <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 5px;">
+                    <i class="fas fa-map-marker-alt" style="width:20px;"></i> Tetouan, Region Tanger-Tetouan-Al Hoceima, Maroc
+                </p>
+                <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 5px;">
+                    <i class="fas fa-envelope" style="width:20px;"></i> sastoukadigital@gmail.com
+                </p>
+                <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 15px;">
+                    <i class="fas fa-phone" style="width:20px;"></i> +212 652 084 735 (Support WhatsApp)
+                </p>
+                <p style="font-size: 0.75rem; color: #64748b; line-height: 1.5; margin-top: 20px;">
+                    Ce site ne fait pas partie du site Web de Facebook ou de Google. Ce site n'est en aucun cas approuvé par Facebook ou Google. Le téléchargement inclut une période d'essai gratuite de 7 jours, après laquelle le paiement d'une licence est obligatoire pour continuer à utiliser le logiciel. L'envoi de l'application est soumis à validation par notre équipe.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true, offset: 100 });
+
+        // GESTION COOKIES (Déclenche GA4 lors du consentement)
+        if (!localStorage.getItem('cookiesAccepted')) {
+            document.getElementById('cookie-banner').style.display = 'block';
+        }
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+            if(typeof fbq === 'function') fbq('trackCustom', 'ConsentementCookies');
+            
+            // Envoi de l'événement de consentement à Google Analytics 4
+            if(typeof gtag === 'function') {
+                gtag('event', 'cookie_consent', { 'event_category': 'engagement' });
+            }
+        }
+
+        // ==========================================
+        // GESTION DES DONNÉES PERSONNELLES (LOCALSTORAGE)
+        // ==========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            let hasData = false;
+            if(localStorage.getItem('eol_userName')) {
+                document.getElementById('fullName').value = localStorage.getItem('eol_userName');
+                hasData = true;
+            }
+            if(localStorage.getItem('eol_userEmail')) {
+                document.getElementById('emailAddress').value = localStorage.getItem('eol_userEmail');
+                hasData = true;
+            }
+            if(localStorage.getItem('eol_userPhone')) {
+                document.getElementById('phoneNumber').value = localStorage.getItem('eol_userPhone');
+                hasData = true;
+            }
+            if(hasData) {
+                document.getElementById('clearDataBtn').style.display = 'inline-flex';
+            }
+        });
+
+        function savePersonalData() {
+            localStorage.setItem('eol_userName', document.getElementById('fullName').value);
+            localStorage.setItem('eol_userEmail', document.getElementById('emailAddress').value);
+            localStorage.setItem('eol_userPhone', document.getElementById('phoneNumber').value);
+            document.getElementById('clearDataBtn').style.display = 'inline-flex';
+        }
+
+        function clearPersonalData() {
+            localStorage.removeItem('eol_userName');
+            localStorage.removeItem('eol_userEmail');
+            localStorage.removeItem('eol_userPhone');
+            
+            document.getElementById('fullName').value = '';
+            document.getElementById('emailAddress').value = '';
+            document.getElementById('phoneNumber').value = '';
+            
+            document.getElementById('clearDataBtn').style.display = 'none';
+            alert("Vos informations ont été effacées de ce navigateur.");
+        }
+
+        // ==========================================
+        // TRAITEMENT DU FORMULAIRE : WHATSAPP OU EMAIL
+        // ==========================================
+        function submitLeadData(method) {
+            const form = document.getElementById('leadCaptureForm');
+            
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            
+            const name = document.getElementById('fullName').value;
+            const email = document.getElementById('emailAddress').value;
+            const phone = document.getElementById('phoneNumber').value;
+            const platform = document.getElementById('platformInterest').value;
+
+            savePersonalData();
+            
+            // 1. Déclenchement Conversion Facebook (Lead)
+            if(typeof fbq === 'function') {
+                fbq('track', 'Lead', { content_name: platform, status: method });
+            }
+
+            // 2. Déclenchement Conversion Google Ads / Analytics
+            if(typeof gtag === 'function') {
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-VOTRE_ID/VOTRE_LABEL_LEAD',
+                    'event_category': 'formulaire',
+                    'event_label': method
+                });
+                
+                gtag('event', 'generate_lead', {
+                    'currency': 'MAD',
+                    'value': 1,
+                    'method': method,
+                    'item_category': platform
+                });
+            }
+
+            // 3. Construction du message
+            const messageBody = `Bonjour EasyOfficinaLink,\n\nVoici une nouvelle demande d'accès gratuit via votre site web :\n\n` +
+                                `👤 Nom : ${name}\n` +
+                                `📧 Email : ${email}\n` +
+                                `📞 Tél : ${phone}\n` +
+                                `💻 Matériel : ${platform}\n\n` +
+                                `Merci de m'envoyer les informations d'accès.`;
+            
+            // 4. Redirection
+            setTimeout(() => {
+                if (method === 'whatsapp') {
+                    const whatsappNumber = "212652084735";
+                    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(messageBody)}`;
+                    window.open(whatsappUrl, '_blank');
+                } else if (method === 'email') {
+                    const mailtoUrl = `mailto:sastoukadigital@gmail.com?subject=${encodeURIComponent("Demande d'accès gratuit - " + name)}&body=${encodeURIComponent(messageBody)}`;
+                    window.location.href = mailtoUrl;
+                }
+                
+                alert("Merci " + name + " ! L'application sélectionnée (WhatsApp ou Mail) va s'ouvrir pour finaliser l'envoi.");
+            }, 300);
+        }
+
+        // Tracking clic WhatsApp Floater
+        const waBtn = document.querySelector('#dragWhatsapp a');
+        if(waBtn) {
+            waBtn.addEventListener('click', () => {
+                if(typeof fbq === 'function') fbq('track', 'Contact', { method: 'WhatsApp_Floater' });
+                
+                if(typeof gtag === 'function') {
+                    gtag('event', 'contact', { 'method': 'WhatsApp_Floater' });
+                }
+            });
+        }
+    </script>
+</body>
+</html>
